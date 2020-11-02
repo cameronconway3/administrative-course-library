@@ -45,7 +45,6 @@ class CreateCourse extends Component {
     }
 
     handleSubmit = e => {
-        // e.preventDefault();
         const { context } = this.props;
         const { 
             title, 
@@ -67,7 +66,7 @@ class CreateCourse extends Component {
     
         context.data.createCourse(newCourse, emailAddress, password)
             .then( response => {
-                if(response) {
+                if(response.length) {
                     console.log("Errors reported: ")
                     console.log(response)
                     this.setState({errors: response})

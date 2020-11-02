@@ -14,13 +14,13 @@ import CreateCourse from './CreateCourse';
 import UpdateCourse from './UpdateCourse';
 
 import UserSignIn from './UserSignIn';
+import UserSignOut from './UserSignOut';
+import UserSignUp from './UserSignUp';
 
 
 import PrivateRoute from '../PrivateRoute';
 
 import withContext from '../Context';
-
-// Test
 
 const CoursesWithContext = withContext(Courses);
 const CourseDetailsWithContext = withContext(CourseDetail);
@@ -29,8 +29,6 @@ const UpdateCourseWithContext = withContext(UpdateCourse);
 
 
 function App() {
-
-
     return (
         <Router>
             <Provider>
@@ -48,9 +46,9 @@ function App() {
                         {/* UserSignIn */}
                         <Route path="/signin" component={UserSignIn} />
                         {/* UserSignUp */}
-                        {/* <Route path="/signup" component={} /> */}
+                        <Route path="/signup" component={UserSignUp} />
                         {/* UserSignOut */}
-                        {/* <Route path="/signout" component={} /> */}
+                        <Route path="/signout" component={UserSignOut} />
                         {/* Forbidden */}
                         {/* <Route path="/forbidden" component={} /> */}
                         {/* Error */}

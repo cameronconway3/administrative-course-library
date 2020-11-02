@@ -21,15 +21,17 @@ import UserSignIn from './UserSignIn';
 import UserSignOut from './UserSignOut';
 import UserSignUp from './UserSignUp';
 
+import Error from './Error';
+import Forbidden from './Forbidden';
+import NotFound from './NotFound';
+
 // Components with context
 const HeaderWithContext = withContext(Header);
 
-// import DeleteCourse from './DeleteCourse';
 const CoursesWithContext = withContext(Courses);
 const CourseDetailsWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
-// const DeleteCourseWithContext = withContext(DeleteCourse);
 
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
@@ -51,8 +53,6 @@ function App() {
                         <PrivateRoute path="/create" component={CreateCourseWithContext} />
                         {/* Update Course */}
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
-                        {/* Delete Course */}
-                        {/* <Route path="/courses/:id/delete" component={DeleteCourseWithContext} /> */}
                         {/* UserSignIn */}
                         <Route path="/signin" component={UserSignInWithContext} />
                         {/* UserSignOut */}
@@ -60,11 +60,11 @@ function App() {
                         {/* UserSignUp */}
                         <Route path="/signup" component={UserSignUpWithContext} />
                         {/* Forbidden */}
-                        {/* <Route path="/forbidden" component={} /> */}
+                        <Route path="/forbidden" component={Forbidden} />
                         {/* Error */}
-                        {/* <Route path="/error" component={} /> */}
+                        <Route path="/error" component={Error} />
                         {/* Not Found */}
-                        {/* <Route component={} /> */}
+                        <Route component={NotFound} />
                     </Switch>
 
                 </div>

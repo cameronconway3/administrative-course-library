@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class CourseDetail extends Component {
 
     state = {
         courses: [],
         owner: "",
-        authenticatedUser: this.state,
+        // authenticatedUser: this.state,
         errors: [],
         loading: true
     }
@@ -18,34 +19,55 @@ class CourseDetail extends Component {
                     this.setState({ 
                         courses: courses,
                         owner: courses.User
-
                     });
                 }
             })
-            // .catch( error => this.props.history.push("/error"))
-            .catch( error => console.log(error))
+            .catch( error => this.props.history.push("/error"))
             .finally(() => this.setState({ loading: false }))
     }
 
+    deleteCourse = () => {
+        const { context } = this.props;
+        const emailAddress = context.authenticatedUser.emailAddress;
+        const password = context.authenticatedUser.password;
+        const id = this.props.match.params.id;
+
+        context.data.deleteCourse(id, emailAddress, password)
+            .then( response => {
+                console.log(response)
+            })
+            .catch( error => {
+                this.setState({ errors: error})
+            })
+
+    }
 
     render() {
 
-        // if(this.state.authenticatedUser && this.state.owner.id === this.state.authenticatedUser.id){
-        //     buttons = <span>
-        //         <NavLink to={`/courses/${course.id}/update`} className="button">Update Course</NavLink>
-        //         <NavLink to={`/courses/${course.id}/delete`} className="button">Delete Course</NavLink></span>
-        // }
+        const { context } = this.props;
+        let buttons;
+
+        if(context.authenticatedUser) {
+            if(this.state.owner.id === context.authenticatedUser.id){
+                buttons = <span>
+                    <NavLink to={`/courses/${this.state.courses.id}/update`} className="button">Update Course</NavLink>
+                    <NavLink to={'/'} onClick={this.deleteCourse} className="button">Delete Course</NavLink>
+                </span>
+            }
+        }
 
         const coursesD = (
-            // <div>
-            //     <div className="actions--bar">
-            //         <div className="bounds">
-            //             <div className="grid-100">    
-            //                 {buttons}
-            //                 <a className="button button-secondary" href="/">Return to List</a>
-            //             </div>
-            //         </div>
-            //     </div>
+            <div>
+                <div className="actions--bar">
+                    <div className="bounds">
+                        <div className="grid-100">    
+                            {
+                                buttons
+                            }
+                            <a className="button button-secondary" href="/">Return to List</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="bounds course--detail">
                     <div class="grid-66">
                         <div class="course--header">
@@ -74,49 +96,8 @@ class CourseDetail extends Component {
                         </div>
                     </div>
                 </div>
-            // </div>
+            </div>
         )
-
-        // const coursesD = this.state.courses.map(course => 
-        //     // <div>
-        //     //     <div className="actions--bar">
-        //     //         <div className="bounds">
-        //     //             <div className="grid-100">    
-        //     //                 {buttons}
-        //     //                 <a className="button button-secondary" href="/">Return to List</a>
-        //     //             </div>
-        //     //         </div>
-        //     //     </div>
-        //         <div class="bounds course--detail">
-        //             <div class="grid-66">
-        //                 <div class="course--header">
-        //                     <h4 class="course--label">Course</h4>
-        //                     <h3 class="course--title">{course.title}</h3>
-        //                     <p>By {this.state.owner.firstName} {this.state.owner.lastName}</p>
-        //                 </div>
-        //                 <div class="course--description">
-        //                     <p>{course.description}</p>
-        //                 </div>
-        //             </div>
-        //             <div class="grid-25 grid-right">
-        //                 <div class="course--stats">
-        //                     <ul class="course--stats--list">
-        //                         <li class="course--stats--list--item">
-        //                             <h4>Estimated Time</h4>
-        //                             <h3>{course.estimatedTime}</h3>
-        //                         </li>
-        //                         <li class="course--stats--list--item">
-        //                             <h4>Materials Needed</h4>
-        //                             <ul>
-        //                                 {course.materialsNeeded}
-        //                             </ul>
-        //                         </li>
-        //                     </ul>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     // </div>
-        // );
 
         return (
             <div>

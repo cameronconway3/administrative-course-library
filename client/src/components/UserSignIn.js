@@ -65,7 +65,7 @@ class UserSignIn extends Component {
                     submit = {this.handleSubmit}
                     submitButtonText = "Sign In"
                     errors = {errors}
-                    details = { () => {
+                    details = { () => (
                         <React.Fragment>
                             <div>
                                 <input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
@@ -74,10 +74,10 @@ class UserSignIn extends Component {
                                 <input id="password" name="password" type="password" class="" placeholder="Password" value={password} onChange={this.updatePassword}/>
                             </div>
                         </React.Fragment>
-                    }}
+                    )}
                 />
                 <p>&nbsp;</p>
-                <p>Don't have a user account? <Link to="/sign-up">Click here</Link> to sign up!</p>
+                <p>Don't have a user account? <Link to="/signup">Click here</Link> to sign up!</p>
                 </div>
             </div>
         )

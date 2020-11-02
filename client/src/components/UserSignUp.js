@@ -89,25 +89,22 @@ class UserSignUp extends Component {
                     submit = {this.handleSubmit}
                     submitButtonText = "Sign Up"
                     errors = {errors}
-                    details = { () => {
+                    details = { () => (
                         <React.Fragment>
-        
-                                <input id="firstName" name="firstName" type="text" class="" placeholder="First Name" value={firstName} onChange={this.updateFirstName} />
-                            
-                           
-                                <input id="lastName" name="lastName" type="text" class="" placeholder="Last Name" value={lastName} onChange={this.updateLastName} />
-                            
-                           
-                                <input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
-                            
-                           
-                                <input id="password" name="password" type="password" class="" placeholder="Password" value={password} onChange={this.updatePassword} />
-                            
-                           
-                                <input id="confirmPassword" name="confirmPassword" type="password" class="" placeholder="Confirm Password" value="" />
-                            
+                            <div>
+                                <input id="firstName" name="firstName" type="text" placeholder="First Name" value={firstName} onChange={this.updateFirstName} />
+                            </div>
+                            <div>
+                                <input id="lastName" name="lastName" type="text" placeholder="Last Name" value={lastName} onChange={this.updateLastName} />
+                            </div>
+                            <div>
+                                <input id="emailAddress" name="emailAddress" type="text" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
+                            </div>
+                            <div>
+                                <input id="password" name="password" type="password" placeholder="Password" value={password} onChange={this.updatePassword} />
+                            </div>
                         </React.Fragment>
-                    }}
+                    )}
                 />
                 <p>&nbsp;</p>
                 <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>

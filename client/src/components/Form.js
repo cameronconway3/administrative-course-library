@@ -3,9 +3,9 @@ import React from 'react';
 const Form = props => {
     const {
         cancel,
-        errors,
         submit,
         submitButtonText,
+        errors,
         details,
     } = props;
 

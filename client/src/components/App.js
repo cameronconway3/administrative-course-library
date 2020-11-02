@@ -21,8 +21,7 @@ import UserSignIn from './UserSignIn';
 import UserSignOut from './UserSignOut';
 import UserSignUp from './UserSignUp';
 
-
-
+// Components with context
 const HeaderWithContext = withContext(Header);
 
 // import DeleteCourse from './DeleteCourse';

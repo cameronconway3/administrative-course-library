@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Form from './Form';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,6 @@ class UserSignIn extends Component {
                     })
                 } else {
                     this.props.history.push("/");
-                    console.log('User signed in')
                 }
             })
             .catch( error => {

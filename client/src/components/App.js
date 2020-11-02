@@ -40,19 +40,18 @@ const UserSignUpWithContext = withContext(UserSignUp);
 function App() {
     return (
         <Router>
-            {/* Remove provider */}
             <Provider>
                 <div>
                     <HeaderWithContext />
 
                     <Switch>
                         <Route exact path="/" component={CoursesWithContext} />
+                        {/* Update Course */}
+                        <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
                         {/* Course Details */}
                         <Route path="/courses/:id" component={CourseDetailsWithContext} />
                         {/* Create Course */}
                         <PrivateRoute path="/create" component={CreateCourseWithContext} />
-                        {/* Update Course */}
-                        <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
                         {/* UserSignIn */}
                         <Route path="/signin" component={UserSignInWithContext} />
                         {/* UserSignOut */}

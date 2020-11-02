@@ -44,7 +44,9 @@ function ErrorsDisplay({ errors }) {
             <h2 className="validation--errors--label">Validation errors</h2>
             <div className="validation-errors">
                 <ul>
-                    {errors.map((error, index) => <li key={index}>{error}</li>)}
+                    {
+                        errors.map((error, index) => <li key={index.toString()}>{error}</li>)
+                    }
                 </ul>
             </div>
         </div>

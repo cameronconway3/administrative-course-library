@@ -10,10 +10,11 @@ class UpdateCourse extends Component {
         materialsNeeded: "",
         errors: [],
         userId: "",
-        firstName:"",
-        lastName:"",
-        emailAddress:"",
-        password:"",
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        password: "",
+        courseId: ""
     }
 
     componentDidMount() {
@@ -27,7 +28,7 @@ class UpdateCourse extends Component {
         })
 
         // Get the details of the current course
-        context.data.getCourseById(this.props.match.params.id)
+        context.data.getCoursesById(this.props.match.params.id)
             .then(response => {
                 if(response) {
                     this.setState({
@@ -61,7 +62,7 @@ class UpdateCourse extends Component {
         this.setState({ materialsNeeded: e.target.value  })
     }
 
-    handleSubmit = e => {
+    handleSubmit = () => {
         // e.preventDefault();
         const { context } = this.props;
         const { 
@@ -71,7 +72,8 @@ class UpdateCourse extends Component {
             materialsNeeded, 
             userId, 
             emailAddress, 
-            password 
+            password,
+            courseId,
         } = this.state;
 
         const updatedCourse = {
@@ -82,12 +84,11 @@ class UpdateCourse extends Component {
             userId,
         }
     
-        context.data.updateCourse(updatedCourse, emailAddress, password)
+        context.data.updateCourse(courseId ,updatedCourse, emailAddress, password)
             .then( response => {
-                if(response) {
-                    console.log("Errors reported: ")
-                    console.log(response)
-                    this.setState({errors: response})
+                if(response.length) {
+                    // Update the error status with the reponse as an array item 
+                    this.setState({errors: [response]})
                 } else {
                     this.props.history.push("/");
                 }

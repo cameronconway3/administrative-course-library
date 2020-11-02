@@ -35,14 +35,15 @@ export default class Data {
         }
       }
 
-    async updateCourse(course, emailAddress, password) {
-        const response = await this.api('/courses/:id', 'PUT', course, true, { emailAddress, password } );
+    async updateCourse(courseId, course, emailAddress, password) {
+        const response = await this.api(`/courses/${courseId}`, 'PUT', course, true, { emailAddress, password } );
         if (response.status === 204) {
             return [];
         }
-        else if (response.status === 401) {
+        else if (response.status === 401 || response.status === 400) {
+            // console.log(response.json().then(data => console.log(data)))
             return response.json().then(data => {
-            return data.errors;
+                return data.message;
             });
         }
         else {
@@ -108,7 +109,7 @@ export default class Data {
 
     async deleteCourse(id, emailAddress, password) {
         const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
-        if (response.status === 200) {
+        if (response.status === 204) {
             return response.json().then(data => data);
         }
         else if (response.status === 401) {

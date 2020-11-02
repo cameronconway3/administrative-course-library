@@ -67,8 +67,6 @@ class CreateCourse extends Component {
         context.data.createCourse(newCourse, emailAddress, password)
             .then( response => {
                 if(response.length) {
-                    console.log("Errors reported: ")
-                    console.log(response)
                     this.setState({errors: response})
                 } else {
                     this.props.history.push("/");

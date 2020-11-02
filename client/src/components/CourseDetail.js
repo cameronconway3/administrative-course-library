@@ -22,7 +22,7 @@ class CourseDetail extends Component {
                     });
                 }
             })
-            .catch( error => this.props.history.push("/error"))
+            .catch( () => this.props.history.push("/error"))
             .finally(() => this.setState({ loading: false }))
     }
 
@@ -35,11 +35,14 @@ class CourseDetail extends Component {
         context.data.deleteCourse(id, emailAddress, password)
             .then( response => {
                 console.log(response)
+                this.props.history.push("/")
             })
             .catch( error => {
+                console.log("course delete")
+                console.log(error)
                 this.setState({ errors: error})
+                this.props.history.push("/error")
             })
-
     }
 
     render() {
@@ -51,7 +54,7 @@ class CourseDetail extends Component {
             if(this.state.owner.id === context.authenticatedUser.id){
                 buttons = <span>
                     <NavLink to={`/courses/${this.state.courses.id}/update`} className="button">Update Course</NavLink>
-                    <NavLink to={'/'} onClick={this.deleteCourse} className="button">Delete Course</NavLink>
+                    <button onClick={this.deleteCourse} className="button">Delete Course</button>
                 </span>
             }
         }

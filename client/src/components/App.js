@@ -6,6 +6,10 @@ import {
 } from 'react-router-dom';
 import { Provider } from '../Context';
 
+import withContext from '../Context';
+import PrivateRoute from '../PrivateRoute';
+
+// Components
 import Header from './Header';
 
 import Courses from './Courses';
@@ -18,22 +22,27 @@ import UserSignOut from './UserSignOut';
 import UserSignUp from './UserSignUp';
 
 
-import PrivateRoute from '../PrivateRoute';
 
-import withContext from '../Context';
+const HeaderWithContext = withContext(Header);
 
+// import DeleteCourse from './DeleteCourse';
 const CoursesWithContext = withContext(Courses);
 const CourseDetailsWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
+// const DeleteCourseWithContext = withContext(DeleteCourse);
 
+const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
+const UserSignUpWithContext = withContext(UserSignUp);
 
 function App() {
     return (
         <Router>
+            {/* Remove provider */}
             <Provider>
                 <div>
-                    <Header />
+                    <HeaderWithContext />
 
                     <Switch>
                         <Route exact path="/" component={CoursesWithContext} />
@@ -43,12 +52,14 @@ function App() {
                         <PrivateRoute path="/create" component={CreateCourseWithContext} />
                         {/* Update Course */}
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
+                        {/* Delete Course */}
+                        {/* <Route path="/courses/:id/delete" component={DeleteCourseWithContext} /> */}
                         {/* UserSignIn */}
-                        <Route path="/signin" component={UserSignIn} />
-                        {/* UserSignUp */}
-                        <Route path="/signup" component={UserSignUp} />
+                        <Route path="/signin" component={UserSignInWithContext} />
                         {/* UserSignOut */}
-                        <Route path="/signout" component={UserSignOut} />
+                        <Route path="/signout" component={UserSignOutWithContext} />
+                        {/* UserSignUp */}
+                        <Route path="/signup" component={UserSignUpWithContext} />
                         {/* Forbidden */}
                         {/* <Route path="/forbidden" component={} /> */}
                         {/* Error */}

@@ -23,10 +23,12 @@ const Form = props => {
         <div>
             <ErrorsDisplay errors={errors} />
             <form onSubmit={handleSubmit}>
-                {details()}
+                {
+                    details()
+                }
                 <div className="grid-100 pad-bottom">
-                <button className="button" type="submit">{submitButtonText}</button>
-                <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
+                    <button className="button" type="submit">{submitButtonText}</button>
+                    <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
         </div>
@@ -41,9 +43,9 @@ function ErrorsDisplay({ errors }) {
         <div>
             <h2 className="validation--errors--label">Validation errors</h2>
             <div className="validation-errors">
-            <ul>
-                {errors.map((error, index) => <li key={index}>{error}</li>)}
-            </ul>
+                <ul>
+                    {errors.map((error, index) => <li key={index}>{error}</li>)}
+                </ul>
             </div>
         </div>
         );

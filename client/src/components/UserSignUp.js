@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Form from "./Form";
+import { Link } from 'react-router-dom';
 
 class UserSignUp extends Component {
 
@@ -8,7 +9,6 @@ class UserSignUp extends Component {
         lastName: '',
         emailAddress: '',
         password: '',
-        // confirmPassword: '',
         errors: [],
     }
 
@@ -48,7 +48,7 @@ class UserSignUp extends Component {
         context.data.createUser(user)
             .then( response => {
                 if(response.length) {
-                    this.setState({errors})
+                    this.setState({errors: response})
                 } else {
                     context.actions.signIn(emailAddress, password)
                         .then( () => {
@@ -91,26 +91,26 @@ class UserSignUp extends Component {
                     errors = {errors}
                     details = { () => {
                         <React.Fragment>
-                            <div>
+        
                                 <input id="firstName" name="firstName" type="text" class="" placeholder="First Name" value={firstName} onChange={this.updateFirstName} />
-                            </div>
-                            <div>
+                            
+                           
                                 <input id="lastName" name="lastName" type="text" class="" placeholder="Last Name" value={lastName} onChange={this.updateLastName} />
-                            </div>
-                            <div>
+                            
+                           
                                 <input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
-                            </div>
-                            <div>
+                            
+                           
                                 <input id="password" name="password" type="password" class="" placeholder="Password" value={password} onChange={this.updatePassword} />
-                            </div>
-                            <div>
+                            
+                           
                                 <input id="confirmPassword" name="confirmPassword" type="password" class="" placeholder="Confirm Password" value="" />
-                            </div>
+                            
                         </React.Fragment>
                     }}
                 />
                 <p>&nbsp;</p>
-                <p>Already have a user account? <a href="sign-in.html">Click here</a> to sign in!</p>
+                <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
                 </div>
             </div>
         )

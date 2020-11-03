@@ -31,8 +31,8 @@ class UserSignIn extends Component {
             .then( response => {
                 if(response == null) {
                     this.setState( () => {
-                        // Return the error as an array so is in the correct format when sent to the Form component
-                        return {errors: ['User was not found. SignIn is not successfull']}
+                        // Return the error as an array so is in the correct format (array) when sent to the Form component
+                        return {errors: ['User was not found. Sign In not successfull']}
                     })
                 } else {
                     this.props.history.push("/");

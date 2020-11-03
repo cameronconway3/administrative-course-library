@@ -76,11 +76,6 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,  
             allowNull: false,
-            // Hash the password using bcryptjs
-            set(val) {
-                const hashedPassword = bcrypt.hashSync(val, 10);
-                this.setDataValue('password', hashedPassword);
-            },
             validate: {
                 notNull: {
                     msg: 'A password is required'
@@ -88,11 +83,23 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: {
                     msg: 'Please provide a password'
                 }
-            }
+            },
+            // set(val) {
+                //     if(val.trim().length !== 0) {
+                    //         const hashedPassword = bcrypt.hashSync(val, 10);
+                    //         this.setDataValue('password', hashedPassword);
+                    //     }
+                    // },
         }
     }, {
+        // Hash the password using bcryptjs, before model created.
+        hooks: {
+            beforeCreate: async (user) => 
+                (user.password = await bcrypt.hashSync(user.password, 10))
+        },
         sequelize,
         modelName: 'User',
     });
+
     return User;
 };

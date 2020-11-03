@@ -6,7 +6,6 @@ class CourseDetail extends Component {
     state = {
         courses: [],
         owner: "",
-        // authenticatedUser: this.state,
         errors: [],
         loading: true
     }
@@ -33,12 +32,10 @@ class CourseDetail extends Component {
         const id = this.props.match.params.id;
 
         context.data.deleteCourse(id, emailAddress, password)
-            .then( response => {
-                console.log(response)
+            .then( () => {
                 this.props.history.push("/")
             })
             .catch( error => {
-                console.log("course delete")
                 console.log(error)
                 this.setState({ errors: error})
                 this.props.history.push("/error")

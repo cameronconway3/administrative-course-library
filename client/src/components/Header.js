@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
 
+// Header component displayed on each page. Updated when authenticated users sign in and out
+
 class Header extends Component {
     render() {
         const {context} = this.props;
@@ -10,6 +12,8 @@ class Header extends Component {
                     <Link to={'/'} className="header--logo">Courses</Link>
                     <nav>
                         {
+                            // If context.authenticatedUser is true display a welcome message and option to sign out.
+                            // If context.authenticatedUser is false, display sign up or sign in options
                             context.authenticatedUser
                             ? (
                                 <React.Fragment>

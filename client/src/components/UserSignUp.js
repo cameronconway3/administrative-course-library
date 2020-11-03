@@ -12,6 +12,7 @@ class UserSignUp extends Component {
         errors: [],
     }
 
+    // For each field in the sign up form, when a value is changed update the relative state variable
     updateFirstName = e => {
         this.setState({ firstName: e.target.value })
     }
@@ -28,6 +29,7 @@ class UserSignUp extends Component {
         this.setState({ password: e.target.value })
     }
 
+    // Handle submit of sign in form, provide all relavent information to sign up
     handleSubmit = () => {
         const { context } = this.props;
         const {
@@ -45,6 +47,7 @@ class UserSignUp extends Component {
             password: password,
         }
 
+        // Create user, if any responses are provided they will be errors, update this.state.errors 
         context.data.createUser(user)
             .then( response => {
                 if(response.length) {
@@ -66,12 +69,14 @@ class UserSignUp extends Component {
             }); 
     }
 
+    // If user presses the cancel button on the form, take then to "/"
     cancel = () => {
         this.props.history.push("/");
     }
 
     render() {
 
+        // Get all the relevant variables from this.state
         const {
             firstName,
             lastName,
@@ -80,6 +85,7 @@ class UserSignUp extends Component {
             errors,
         } = this.state;
 
+        // Render the Sign Up JSX using the Form component
         return (
             <div class="bounds">
                 <div class="grid-33 centered signin">

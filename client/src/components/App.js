@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from '../Context';
 
+// Import logic for private routes and routes with context
 import withContext from '../Context';
 import PrivateRoute from '../PrivateRoute';
 

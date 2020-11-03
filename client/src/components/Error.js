@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Error component
+
 const Error = () => {
 
     return (

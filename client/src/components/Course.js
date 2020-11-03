@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// For each course create link to its description page while displauing title.
 const Course = props => {
     return (
         <div className="grid-33">

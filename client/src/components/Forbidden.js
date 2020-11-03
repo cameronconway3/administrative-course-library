@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Forbidden Component 
+
 const Forbidden = () => {
 
     return (

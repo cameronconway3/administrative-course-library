@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import Data from './Data';
 import Cookies from 'js-cookie';
 
+// Provide the context for the client
+
 export const Context = React.createContext(); 
 
 export class Provider extends Component {
 
+    // Set 'authenticatedUser to 'Cookies.getJSON('authenticatedUser')' is set else to 'null'
     state = { 
         authenticatedUser: Cookies.getJSON('authenticatedUser') || null
     }
@@ -17,6 +20,7 @@ export class Provider extends Component {
 
     render () {
         const { authenticatedUser } = this.state;
+        // value created with details of authenticatedUser, api functions and actions (signIn and signOut)
         const value = {
             authenticatedUser,
             data: this.data,
@@ -26,6 +30,7 @@ export class Provider extends Component {
             }
         };
 
+        // Pass the value object in the provider to its children
         return (
             <Context.Provider value={value}>
                 {this.props.children}
@@ -33,6 +38,8 @@ export class Provider extends Component {
         );
     }
 
+    // Sign in function, using getUser function in './Data', if user is defined update the authenticatedUser to user that called the sign in function.
+    // Set a cookie 'authenticatedUser' that expires in 1 day.
     signIn = async (username, password) => {
         const user = await this.data.getUser(username, password);
         if (user) {
@@ -49,6 +56,7 @@ export class Provider extends Component {
         return user;
     }
 
+    // Sign out authenticated user by updating the 'authenticatedUser' state to null. Remove the authenticated user cookie.
     signOut = () => {
         this.setState(() => {
             return {
@@ -61,6 +69,7 @@ export class Provider extends Component {
 
 export const Consumer = Context.Consumer;
     
+// withContext function to provide condext to certain components
 export default function withContext(Component) {
     return function ContextComponent(props) {
       return (

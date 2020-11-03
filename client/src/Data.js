@@ -1,5 +1,6 @@
 export default class Data {
 
+    // Template function for each api call
     api = (path, method = 'GET', body = null, requiresAuth = false, credentials = null) => {
         const url = 'http://localhost:5000/api' + path;
 
@@ -22,6 +23,7 @@ export default class Data {
         return fetch(url, options)
     }
 
+    // Function to fetch user, using the provided email and password
     async getUser(emailAddress, password) {
         const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
         if (response.status === 200) {
@@ -35,6 +37,7 @@ export default class Data {
         }
     }
 
+    // Function to update a specific course which is found using the course Id, checked that it can be updated using the credentials provided and then using 'course' with the new details
     async updateCourse(courseId, course, emailAddress, password) {
         const response = await this.api(`/courses/${courseId}`, 'PUT', course, true, { emailAddress, password } );
         if (response.status === 204) {
@@ -51,6 +54,7 @@ export default class Data {
         }
     }
 
+    // Create a new user
     async createUser(user) {
         const response = await this.api('/users', 'POST', user);
         if (response.status === 201) {
@@ -66,6 +70,7 @@ export default class Data {
         }
     }
 
+    // Create a new course, pass the credentials that link this course to a specific user
     async createCourse(newCourse, emailAddress, password,) {
         const response = await this.api('/courses', 'POST', newCourse, true, { emailAddress, password} );
         if (response.status === 201) {
@@ -81,6 +86,7 @@ export default class Data {
         }
     }
 
+    // Get courses
     async getCourses() {
         const response = await this.api('/courses', 'GET', null, false);
         if (response.status === 200) {
@@ -94,6 +100,7 @@ export default class Data {
         }
     }
 
+    // Get specific course by id
     async getCoursesById(id) {
         const response = await this.api(`/courses/${id}`, 'GET', null, false);
         if (response.status === 200) {
@@ -107,6 +114,7 @@ export default class Data {
         }
     }
 
+    // Delete a course using id to identify it and check that it can be accessed by specific user using the passed credentials
     async deleteCourse(id, emailAddress, password) {
         const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
         if (response.status === 204) {

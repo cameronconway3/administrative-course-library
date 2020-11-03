@@ -5,9 +5,13 @@ import {
 } from 'react-router-dom';
 import { Context } from './Context';
 
+// Private route can only be accessed by specific authenticated users
+
 export default ({ component: Component, ...rest }) => {
+    // Get the authenticated user
     const { authenticatedUser } = useContext(Context);
   
+    // If user is not authenticated then they are redirected to '/signin'
     return (
         <Route
             {...rest}

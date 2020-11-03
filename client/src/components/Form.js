@@ -9,16 +9,19 @@ const Form = props => {
         details,
     } = props;
 
+    // Handle submit of form, prevent the default submit and call the 'submit' function passed as props
     const handleSubmit = e => {
         e.preventDefault();
         submit();
     }
 
+    // Handle cancel of form, prevent the default cancel and call the 'cancel' function passed as props
     const handleCancel = e => {
         e.preventDefault();
         cancel();
     }
 
+    // Build the JSX with the details provided, display and errors using the 'ErrorsDisplay' function
     return (
         <div>
             <ErrorsDisplay errors={errors} />
@@ -35,6 +38,7 @@ const Form = props => {
     );
 }
 
+// If the errors array contains any errors then build the JSX and map over each error and build a list item containing the error with a key
 function ErrorsDisplay({ errors }) {
     let errorsDisplay = null;
 

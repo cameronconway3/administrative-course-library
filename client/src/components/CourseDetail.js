@@ -10,6 +10,8 @@ class CourseDetail extends Component {
         loading: true
     }
 
+    // When component mounts get the specific course by id (which is provided in the url params).
+    // Once the data returned by the api call has been loaded set 'loading' to false.
     componentDidMount() {
         const { context } = this.props;
         context.data.getCoursesById(this.props.match.params.id)
@@ -25,6 +27,7 @@ class CourseDetail extends Component {
             .finally(() => this.setState({ loading: false }))
     }
 
+    // Delete course function, called from the button (only displayed to owner of the course)
     deleteCourse = () => {
         const { context } = this.props;
         const emailAddress = context.authenticatedUser.emailAddress;
@@ -47,6 +50,7 @@ class CourseDetail extends Component {
         const { context } = this.props;
         let buttons;
 
+        // If user is authenticated and the owner of the course id is equal to the owner id, then add the 'Update Course' and 'Delete Course' buttons to the JSX
         if(context.authenticatedUser) {
             if(this.state.owner.id === context.authenticatedUser.id){
                 buttons = <span>
@@ -56,6 +60,7 @@ class CourseDetail extends Component {
             }
         }
 
+        // Build the course detail JSX
         const coursesD = (
             <div>
                 <div className="actions--bar">
@@ -99,6 +104,7 @@ class CourseDetail extends Component {
             </div>
         )
 
+        // If the loading state is true display 'Loading...', else return the course detail
         return (
             <div>
                 {

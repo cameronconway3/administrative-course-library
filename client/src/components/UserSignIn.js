@@ -10,6 +10,7 @@ class UserSignIn extends Component {
         errors: [],
     }
 
+    // For each field in the sign in form, when a value is changed update the relative state variable
     updateEmailAddress = e => {
         this.setState({ emailAddress: e.target.value })
     }
@@ -18,6 +19,7 @@ class UserSignIn extends Component {
         this.setState({ password: e.target.value })
     }
 
+    // Handle submit of sign in form, provide all relavent information to sign in
     handleSubmit = () => {
         const { context } = this.props;
         const {
@@ -42,19 +44,21 @@ class UserSignIn extends Component {
             });
     }
 
+    // If user presses the cancel button on the form, take then to "/"
     cancel = () => {
         this.props.history.push("/");
     }
 
     render() {
 
+        // Get all the relevant variables from this.state
         const {
             emailAddress,
             password,
             errors,
         } = this.state;
 
-
+        // Render the Sign In JSX using the Form component
         return (
             <div class="bounds">
                 <div class="grid-33 centered signin">

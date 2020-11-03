@@ -3,6 +3,7 @@ import Form from './Form';
 
 class UpdateCourse extends Component {
 
+    // Provide all relevant state needed to update a course
     state = {
         title: "",
         description: "",
@@ -17,6 +18,7 @@ class UpdateCourse extends Component {
         courseId: ""
     }
 
+    // Update the user states with information provided from the authenticatedUser
     componentDidMount() {
         const { context } = this.props;
         this.setState({
@@ -45,7 +47,7 @@ class UpdateCourse extends Component {
             .catch( error => console.error(error) );
     }
 
-    // May need to be changed
+    // For each field in the create course form, when a value is changed update the relative state variable
     updateTitle = e => {
         this.setState({ title: e.target.value  })
     }
@@ -62,8 +64,8 @@ class UpdateCourse extends Component {
         this.setState({ materialsNeeded: e.target.value  })
     }
 
+    // Handle submit of update course form, provide all relavent information to update a course
     handleSubmit = () => {
-        // e.preventDefault();
         const { context } = this.props;
         const { 
             title, 
@@ -84,6 +86,7 @@ class UpdateCourse extends Component {
             userId,
         }
     
+         // Call updateCourse function on specific course (courseId) with 'updatedCourse' object and pass the credentials to link the new course to a specific user
         context.data.updateCourse(courseId ,updatedCourse, emailAddress, password)
             .then( response => {
                 if(response.length) {
@@ -96,12 +99,14 @@ class UpdateCourse extends Component {
             .catch( error => console.error(error) );
     }
 
+    // If user presses the cancel button on the form, take then to "/"
     cancel = () => {
         this.props.history.push("/");
     }
 
     render() {
 
+        // Get all the relevant variables from this.state
         const {
             title,
             description,
@@ -112,6 +117,7 @@ class UpdateCourse extends Component {
             errors,
         } = this.state;
 
+        // Render the Update Course JSX using the Form component
         return (
             <div class="bounds course--detail">
                 <h1>Update Course</h1>

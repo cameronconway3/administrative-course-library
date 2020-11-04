@@ -50,7 +50,7 @@ class UserSignUp extends Component {
         // Create user, if any responses are provided they will be errors, update this.state.errors 
         context.data.createUser(user)
             .then( response => {
-                // console.log(response)
+                console.log(response)
                 if(response.length) {
                     this.setState({errors: response})
                 } else {
@@ -65,6 +65,7 @@ class UserSignUp extends Component {
                 }
             })
             .catch( error => {
+                console.log("errrrror")
                 console.log(error)
                 this.props.history.push('/error');
             }); 

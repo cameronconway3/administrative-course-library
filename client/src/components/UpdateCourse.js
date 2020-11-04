@@ -5,6 +5,7 @@ class UpdateCourse extends Component {
 
     // Provide all relevant state needed to update a course
     state = {
+        courseId: "",
         title: "",
         description: "",
         estimatedTime: "",
@@ -15,7 +16,7 @@ class UpdateCourse extends Component {
         lastName: "",
         emailAddress: "",
         password: "",
-        courseId: ""
+        userId: "",
     }
 
     // Update the user states with information provided from the authenticatedUser
@@ -35,13 +36,14 @@ class UpdateCourse extends Component {
                 if(response) {
                     this.setState({
                         courseId: this.props.match.params.id,
-                        title: response.title,
-                        description: response.description,
-                        estimatedTime: response.estimatedTime,
-                        materialsNeeded: response.materialsNeeded,
+                        title: response.title || "",
+                        description: response.description || "",
+                        estimatedTime: response.estimatedTime || "",
+                        materialsNeeded: response.materialsNeeded || "",
+                        userId: response.userId,
                     })
                     // If authenticated user doesnt own the course, redirect them to '/Forbidden'
-                    if(parseInt(this.state.courseId) !== context.authenticatedUser.id) {
+                    if(parseInt(this.state.userId) !== context.authenticatedUser.id) {
                         this.props.history.push("/forbidden")
                     }
                 } else {

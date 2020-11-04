@@ -57,6 +57,7 @@ export default class Data {
     // Create a new user
     async createUser(user) {
         const response = await this.api('/users', 'POST', user);
+        console.log(response)
         if (response.status === 201 || response.status === 200) {
             return [];
         }

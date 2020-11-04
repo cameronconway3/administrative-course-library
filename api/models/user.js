@@ -60,17 +60,21 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: {
                     msg: 'Please provide an email address'
                 },
-                isUnique(val) {
-                    return User.findOne({
-                      where: {
-                        emailAddress: val
-                      }
-                    }).then(emailAddress => {
-                      if (emailAddress) {
-                        throw new Error("This email has already been taken.")
-                      }
-                    })
-                }
+                // isUnique(val) {
+                //     return User.findOne({
+                //       where: {
+                //         emailAddress: val
+                //       }
+                //     }).then(emailAddress => {
+                //       if (emailAddress) {
+                //         throw new Error("This email has already been taken.")
+                //       }
+                //     })
+                // }
+            },
+            unique: {
+                args: true,
+                msg: "This email has already been taken."
             }
         },
         password: {

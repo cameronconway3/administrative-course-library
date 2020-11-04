@@ -61,8 +61,8 @@ class UserSignIn extends Component {
 
         // Render the Sign In JSX using the Form component
         return (
-            <div class="bounds">
-                <div class="grid-33 centered signin">
+            <div className="bounds">
+                <div className="grid-33 centered signin">
                 <h1>Sign In</h1>
                 <Form 
                     cancel = {this.cancel}
@@ -72,10 +72,10 @@ class UserSignIn extends Component {
                     details = { () => (
                         <React.Fragment>
                             <div>
-                                <input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
+                                <input id="emailAddress" name="emailAddress" type="text" placeholder="Email Address" value={emailAddress} onChange={this.updateEmailAddress} />
                             </div>
                             <div>
-                                <input id="password" name="password" type="password" class="" placeholder="Password" value={password} onChange={this.updatePassword}/>
+                                <input id="password" name="password" type="password" placeholder="Password" value={password} onChange={this.updatePassword}/>
                             </div>
                         </React.Fragment>
                     )}

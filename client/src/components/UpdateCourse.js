@@ -124,7 +124,7 @@ class UpdateCourse extends Component {
 
         // Render the Update Course JSX using the Form component
         return (
-            <div class="bounds course--detail">
+            <div className="bounds course--detail">
                 <h1>Update Course</h1>
                 <div>
                     <Form
@@ -134,31 +134,31 @@ class UpdateCourse extends Component {
                         errors = {errors}
                         details = { () => (
                             <React.Fragment>
-                                <div class="grid-66">
-                                    <div class="course--header">
-                                        <h4 class="course--label">Course</h4>
+                                <div className="grid-66">
+                                    <div className="course--header">
+                                        <h4 className="course--label">Course</h4>
                                         <div>
-                                            <input id="title" name="title" type="text" class="input-title course--title--input" placeholder="Course title..." value="Build a Basic Bookcase" value={title} onChange={this.updateTitle} />
+                                            <input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value="Build a Basic Bookcase" value={title} onChange={this.updateTitle} />
                                         </div>
                                         <p>By {firstName} {lastName}</p>
                                     </div>
-                                    <div class="course--description">
-                                        <div><textarea id="description" name="description" class="" placeholder="Course description..." value={description} onChange={this.updateDescription} ></textarea></div>
+                                    <div className="course--description">
+                                        <div><textarea id="description" name="description" className="" placeholder="Course description..." value={description} onChange={this.updateDescription} ></textarea></div>
                                     </div>
                                 </div>
-                                <div class="grid-25 grid-right">
-                                    <div class="course--stats">
-                                        <ul class="course--stats--list">
-                                            <li class="course--stats--list--item">
+                                <div className="grid-25 grid-right">
+                                    <div className="course--stats">
+                                        <ul className="course--stats--list">
+                                            <li className="course--stats--list--item">
                                                 <h4>Estimated Time</h4>
                                                 <div>
-                                                    <input id="estimatedTime" name="estimatedTime" type="text" class="course--time--input" placeholder="Hours" value={estimatedTime} onChange={this.updateEstimatedTime} />
+                                                    <input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input" placeholder="Hours" value={estimatedTime} onChange={this.updateEstimatedTime} />
                                                 </div>
                                             </li>
-                                            <li class="course--stats--list--item">
+                                            <li className="course--stats--list--item">
                                                 <h4>Materials Needed</h4>
                                                 <div>
-                                                    <textarea id="materialsNeeded" name="materialsNeeded" class="" placeholder="List materials..." value={materialsNeeded} onChange={this.updateMaterialsNeeded} ></textarea>
+                                                    <textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List materials..." value={materialsNeeded} onChange={this.updateMaterialsNeeded} ></textarea>
                                                 </div>
                                             </li>
                                         </ul>

@@ -88,8 +88,8 @@ class UserSignUp extends Component {
 
         // Render the Sign Up JSX using the Form component
         return (
-            <div class="bounds">
-                <div class="grid-33 centered signin">
+            <div className="bounds">
+                <div className="grid-33 centered signin">
                 <h1>Sign Up</h1>
                 <Form
                     cancel = {this.cancel}

@@ -21,6 +21,9 @@ class CourseDetail extends Component {
                         courses: courses,
                         owner: courses.User
                     });
+                } else {
+                    // Redirect to /notfound if no course returned
+                    this.props.history.push("/notfound")
                 }
             })
             .catch( () => this.props.history.push("/error"))

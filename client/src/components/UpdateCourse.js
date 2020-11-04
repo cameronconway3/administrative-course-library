@@ -40,54 +40,59 @@ class UpdateCourse extends Component {
                         estimatedTime: response.estimatedTime,
                         materialsNeeded: response.materialsNeeded,
                     })
+                    // If authenticated user doesnt own the course, redirect them to '/Forbidden'
+                    if(parseInt(this.state.courseId) !== context.authenticatedUser.id) {
+                        this.props.history.push("/forbidden")
+                    }
                 } else {
-                    this.props.history.push("/")
+                    // Redirect to /notfound if no course returned
+                    this.props.history.push("/notfound")
                 }
             })
             .catch( error => console.error(error) );
     }
-
-    // For each field in the create course form, when a value is changed update the relative state variable
-    updateTitle = e => {
-        this.setState({ title: e.target.value  })
-    }
-
-    updateDescription = e => {
-        this.setState({ description: e.target.value  })
-    }
-
-    updateEstimatedTime = e => {
-        this.setState({ estimatedTime: e.target.value  })
-    }
-
-    updateMaterialsNeeded = e => {
-        this.setState({ materialsNeeded: e.target.value  })
-    }
-
-    // Handle submit of update course form, provide all relavent information to update a course
-    handleSubmit = () => {
-        const { context } = this.props;
-        const { 
-            title, 
-            description, 
-            estimatedTime, 
-            materialsNeeded, 
-            userId, 
-            emailAddress, 
-            password,
-            courseId,
-        } = this.state;
-
-        const updatedCourse = {
-            title,
-            description,
-            estimatedTime,
-            materialsNeeded,
-            userId,
+        
+        // For each field in the create course form, when a value is changed update the relative state variable
+        updateTitle = e => {
+            this.setState({ title: e.target.value  })
         }
-    
-         // Call updateCourse function on specific course (courseId) with 'updatedCourse' object and pass the credentials to link the new course to a specific user
-        context.data.updateCourse(courseId ,updatedCourse, emailAddress, password)
+        
+        updateDescription = e => {
+            this.setState({ description: e.target.value  })
+        }
+        
+        updateEstimatedTime = e => {
+            this.setState({ estimatedTime: e.target.value  })
+        }
+        
+        updateMaterialsNeeded = e => {
+            this.setState({ materialsNeeded: e.target.value  })
+        }
+        
+        // Handle submit of update course form, provide all relavent information to update a course
+        handleSubmit = () => {
+            const { context } = this.props;
+            const { 
+                title, 
+                description, 
+                estimatedTime, 
+                materialsNeeded, 
+                userId, 
+                emailAddress, 
+                password,
+                courseId,
+            } = this.state;
+            
+            const updatedCourse = {
+                title,
+                description,
+                estimatedTime,
+                materialsNeeded,
+                userId,
+            }
+            
+            // Call updateCourse function on specific course (courseId) with 'updatedCourse' object and pass the credentials to link the new course to a specific user
+            context.data.updateCourse(courseId ,updatedCourse, emailAddress, password)
             .then( response => {
                 if(response.length) {
                     // Update the error status with the reponse as an array item 
@@ -97,15 +102,15 @@ class UpdateCourse extends Component {
                 }
             })
             .catch( error => console.error(error) );
-    }
-
-    // If user presses the cancel button on the form, take then to "/"
-    cancel = () => {
-        this.props.history.push("/");
-    }
-
-    render() {
-
+        }
+        
+        // If user presses the cancel button on the form, take then to "/"
+        cancel = () => {
+            this.props.history.push("/");
+        }
+        
+        render() {
+            
         // Get all the relevant variables from this.state
         const {
             title,

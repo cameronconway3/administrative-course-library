@@ -35,7 +35,8 @@ class UserSignIn extends Component {
                         return {errors: ['User was not found. Sign In not successfull']}
                     })
                 } else {
-                    this.props.history.push("/");
+                    // Once signed in user is directed back to the page they were previously on
+                    this.props.history.goBack();
                 }
             })
             .catch( error => {

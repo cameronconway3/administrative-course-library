@@ -47,12 +47,12 @@ function App() {
 
                     <Switch>
                         <Route exact path="/" component={CoursesWithContext} />
+                        {/* Create Course */}
+                        <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
                         {/* Update Course */}
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
                         {/* Course Details */}
                         <Route path="/courses/:id" component={CourseDetailsWithContext} />
-                        {/* Create Course */}
-                        <PrivateRoute path="/create" component={CreateCourseWithContext} />
                         {/* UserSignIn */}
                         <Route path="/signin" component={UserSignInWithContext} />
                         {/* UserSignOut */}

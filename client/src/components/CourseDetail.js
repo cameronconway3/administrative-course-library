@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+const ReactMarkdown = require('react-markdown');
 
 class CourseDetail extends Component {
 
@@ -84,7 +85,7 @@ class CourseDetail extends Component {
                             <p>By {this.state.owner.firstName} {this.state.owner.lastName}</p>
                         </div>
                         <div className="course--description">
-                            <p>{this.state.courses.description}</p>
+                            <p><ReactMarkdown source={this.state.courses.description} /></p>
                         </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -97,7 +98,7 @@ class CourseDetail extends Component {
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
                                     <ul>
-                                        {this.state.courses.materialsNeeded}
+                                        <ReactMarkdown source={this.state.courses.materialsNeeded} />
                                     </ul>
                                 </li>
                             </ul>

@@ -108,7 +108,7 @@ class UpdateCourse extends Component {
         
         // If user presses the cancel button on the form, take then to "/"
         cancel = () => {
-            this.props.history.push("/");
+            this.props.history.push(`/courses/${this.props.match.params.id}`);
         }
         
         render() {

@@ -27,7 +27,7 @@ import UserSignIn from './UserSignIn';
 import UserSignOut from './UserSignOut';
 import UserSignUp from './UserSignUp';
 
-import Error from './Error';
+import UnhandledError from './UnhandledError';
 import Forbidden from './Forbidden';
 import NotFound from './NotFound';
 
@@ -67,7 +67,7 @@ function App() {
                         {/* Forbidden */}
                         <Route path="/forbidden" component={Forbidden} />
                         {/* Error */}
-                        <Route path="/error" component={Error} />
+                        <Route path="/error" component={UnhandledError} />
                         {/* Not Found */}
                         <Route component={NotFound} />
                     </Switch>

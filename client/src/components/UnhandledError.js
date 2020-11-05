@@ -2,7 +2,7 @@ import React from 'react';
 
 // Error component
 
-const Error = () => {
+const UnhandledError = () => {
 
     return (
         <div className="bounds">
@@ -12,4 +12,4 @@ const Error = () => {
     )
 }
 
-export default Error;
+export default UnhandledError;

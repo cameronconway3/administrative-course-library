@@ -7,7 +7,7 @@ import { Context } from './Context';
 
 // Private route can only be accessed by specific authenticated users
 
-export default ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
     // Get the authenticated user
     const { authenticatedUser } = useContext(Context);
   
@@ -23,3 +23,5 @@ export default ({ component: Component, ...rest }) => {
         />
     );
 };
+
+export default PrivateRoute;

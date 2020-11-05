@@ -11,7 +11,6 @@ class UpdateCourse extends Component {
         estimatedTime: "",
         materialsNeeded: "",
         errors: [],
-        userId: "",
         firstName: "",
         lastName: "",
         emailAddress: "",
@@ -140,7 +139,7 @@ class UpdateCourse extends Component {
                                     <div className="course--header">
                                         <h4 className="course--label">Course</h4>
                                         <div>
-                                            <input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value="Build a Basic Bookcase" value={title} onChange={this.updateTitle} />
+                                            <input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value={title} onChange={this.updateTitle} />
                                         </div>
                                         <p>By {firstName} {lastName}</p>
                                     </div>

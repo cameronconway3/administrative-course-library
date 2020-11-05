@@ -28,6 +28,7 @@ class CourseDetail extends Component {
                 }
             })
             .catch( () => this.props.history.push("/error"))
+            .catch( (error) => console.log(error))
             .finally(() => this.setState({ loading: false }))
     }
 
@@ -85,7 +86,7 @@ class CourseDetail extends Component {
                             <p>By {this.state.owner.firstName} {this.state.owner.lastName}</p>
                         </div>
                         <div className="course--description">
-                            <p><ReactMarkdown source={this.state.courses.description} /></p>
+                            <ReactMarkdown source={this.state.courses.description} />
                         </div>
                     </div>
                     <div className="grid-25 grid-right">

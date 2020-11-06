@@ -69,6 +69,7 @@ function App() {
                         {/* Error */}
                         <Route path="/error" component={UnhandledError} />
                         {/* Not Found */}
+                        <Route path="/notfound" component={NotFound} />
                         <Route component={NotFound} />
                     </Switch>
 

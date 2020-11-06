@@ -102,7 +102,7 @@ class UpdateCourse extends Component {
                     this.props.history.push("/");
                 }
             })
-            .catch( error => console.error(error) );
+            .catch( () => this.props.history.push("/error") );
         }
         
         // If user presses the cancel button on the form, take then to "/"
